@@ -5,14 +5,8 @@
     /// </summary>
     public interface IPlayerInput
     {
-        void OnMoveLeft();
+        void OnMove();
          
-        void OnMoveRight();
-
-        void OnMoveUp();
-
-        void OnMoveDown();
-
         void OnFire();
     }
 }

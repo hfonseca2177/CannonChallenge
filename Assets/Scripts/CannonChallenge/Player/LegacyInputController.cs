@@ -9,28 +9,20 @@ namespace CannonChallenge.Player
     {
         private void Update()
         {
-            //when left mouse is triggered
-            if (Input.GetKeyUp(KeyCode.A))
-            {
-                OnMoveLeft();
-            }
-            else if (Input.GetKeyUp(KeyCode.D))
-            {
-                OnMoveRight();
-            }
-            else if (Input.GetKeyUp(KeyCode.W))
-            {
-                OnMoveUp();
-            }
-            else if (Input.GetKeyUp(KeyCode.S))
-            {
-                OnMoveDown();
-            }
-            else if (Input.GetKeyUp(KeyCode.Space))
+            OnMove();
+            
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 OnFire();
             }
         }
 
+        public override void OnMove()
+        {
+            float horizontalInput = Input.GetAxis("Horizontal");
+            float verticalInput = Input.GetAxis("Vertical");
+            
+            _onMoveNotify.Invoke(new Vector2(horizontalInput, verticalInput));
+        }
     }
 }

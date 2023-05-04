@@ -9,32 +9,13 @@ namespace CannonChallenge.Player
     public abstract class BaseInputController : MonoBehaviour, IPlayerInput
     {
         [Header("Events")]
-        [SerializeField] protected VoidEventAsset _onMoveLeftNotify;
-        [SerializeField] protected VoidEventAsset _onMoveRightNotify;
-        [SerializeField] protected VoidEventAsset _onMoveUpNotify;
-        [SerializeField] protected VoidEventAsset _onMoveDownNotify;
+        [SerializeField] protected MoveEventAsset _onMoveNotify;
         [SerializeField] protected VoidEventAsset _onFireNotify;
-        
-        public virtual void OnMoveLeft()
-        {
-            _onMoveLeftNotify.Invoke();
-        }
 
-        public virtual void OnMoveRight()
+        public virtual void OnMove()
         {
-            _onMoveRightNotify.Invoke();
+            _onMoveNotify.Invoke(Vector2.zero);
         }
-
-        public virtual void OnMoveUp()
-        {
-            _onMoveUpNotify.Invoke();
-        }
-
-        public virtual void OnMoveDown()
-        {
-            _onMoveDownNotify.Invoke();
-        }
-
         public virtual void OnFire()
         {
             _onFireNotify.Invoke();
