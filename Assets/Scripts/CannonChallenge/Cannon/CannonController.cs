@@ -1,5 +1,6 @@
 using CannonChallenge.Attributes;
 using CannonChallenge.Events;
+using CannonChallenge.Util;
 using UnityEngine;
 
 namespace CannonChallenge.Cannon
@@ -10,23 +11,30 @@ namespace CannonChallenge.Cannon
     public class CannonController : MonoBehaviour
     {
 
+        [Header("Scalable attributes")]
+        [Tooltip("Cannon data definition")]
         [SerializeField, Expandable] private CannonDefinition _cannonDefinition;
-        
-        [SerializeField] private AttributeDTO _rotationSpeed;
-        [SerializeField] private AttributeDTO _shotSpeed;
-        [SerializeField] private AttributeDTO _areaEffect;
-        
-        [SerializeField] private float _smoothSpeed = 0.1f;
-        [SerializeField] private GameObject _cannonballPrefab;
-        [SerializeField] private Transform _shotSpot;
-        [SerializeField] private bool _useSmoothDamp;
-
+        [Tooltip("Cannon data reference - this controller is responsible for keeping this reference")]
         [SerializeField] private CannonDataReference _cannonDataReference;
-        
+        [Tooltip("Position where the projectile will be spawned")]
+        [SerializeField] private Transform _shotSpot;
+        [Header("Damping movement option")]
+        [Tooltip("Case smoothing transition is enabled")]
+        [SerializeField] private bool _useSmoothDamp;
+        [Tooltip("Smoothing damping modifier")]
+        [SerializeField] private float _smoothSpeed = 0.1f;
+        [Header("Cannonball Object pooling")]
+        [Tooltip("Object Pooling reference")]
+        [SerializeField] private ObjectPooling _cannonBallPool;
+        [Tooltip("Projectile release event - return to pool")]
+        [SerializeField] private GameObjectEventAsset _onCannonBallRelease;
         [Header("Events")]
         [SerializeField] private MoveEventAsset _onMove;
         [SerializeField] private VoidEventAsset _onFire;
 
+        private AttributeDTO _rotationSpeed;
+        private AttributeDTO _shotSpeed;
+        private AttributeDTO _areaEffect;
         private Vector2 _currentInput;
         private Vector2 _newInput;
         private Vector2 _smoothVelocity;
@@ -36,12 +44,19 @@ namespace CannonChallenge.Cannon
             _currentInput = Vector2.zero;
             _onMove.OnInvoked.AddListener(OnMoveEvent);
             _onFire.OnInvoked.AddListener(OnFireEvent);
+            _onCannonBallRelease.OnInvoked.AddListener(OnCannonBallReleaseEvent);
         }
 
         private void OnDisable()
         {
             _onMove.OnInvoked.RemoveListener(OnMoveEvent);
             _onFire.OnInvoked.RemoveListener(OnFireEvent);
+            _onCannonBallRelease.OnInvoked.RemoveListener(OnCannonBallReleaseEvent);
+        }
+
+        private void OnCannonBallReleaseEvent(GameObject cannonball)
+        {
+            _cannonBallPool.Release(cannonball);
         }
 
         private void Start()
@@ -61,8 +76,19 @@ namespace CannonChallenge.Cannon
 
         private void OnFireEvent()
         {
-            GameObject ball = Instantiate(_cannonballPrefab, _shotSpot.position, _shotSpot.rotation);
-            ball.GetComponent<Rigidbody>().velocity = _shotSpot.transform.up * _shotSpeed.CurrentValue;
+            SpawnCannonball();
+        }
+
+        private void SpawnCannonball()
+        {
+            var ball = _cannonBallPool.Get();
+            var ballTransform = ball.transform;
+            ballTransform.position = _shotSpot.position;
+            ballTransform.rotation = _shotSpot.rotation;
+            Vector3 shotSpeed = _shotSpot.transform.up * _shotSpeed.CurrentValue;
+            CannonBall cannonBall = ball.GetComponent<CannonBall>();
+            cannonBall.Fire(shotSpeed);
+            ball.SetActive(true);
         }
 
         private void Update()
@@ -71,8 +97,6 @@ namespace CannonChallenge.Cannon
             {
                 return;
             }
-            
-            //Case smoothing transition is enabled
             if (_useSmoothDamp)
             {
                 _currentInput = Vector2.SmoothDamp(_currentInput, _newInput, ref _smoothVelocity, _smoothSpeed);    
@@ -90,8 +114,7 @@ namespace CannonChallenge.Cannon
         {
             _newInput = input;
         }
-
-
+        
         private void RotateHorizontally(float direction)
         {
             if (direction == 0)
