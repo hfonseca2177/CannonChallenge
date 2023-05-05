@@ -1,0 +1,19 @@
+{
+    "name": "CannonAD",
+    "rootNamespace": "",
+    "references": [
+        "GUID:ee05bfa9d8913cc4f98a3a386c08a2ba",
+        "GUID:6a5794815a03f394e85b395b518d1d57",
+        "GUID:1d503e9dab0401f40ae2b35e0c3c6c88",
+        "GUID:df75aad2ffad0164d90d30a2ef47ede2"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

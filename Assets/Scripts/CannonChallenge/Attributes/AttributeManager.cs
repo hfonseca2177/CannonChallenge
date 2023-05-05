@@ -20,7 +20,7 @@ namespace CannonChallenge.Attributes
         
         public float GetUpgradedValue(float baseCost, int level, float flatModifier, float percentageModifier)
         {
-            return (baseCost * Mathf.Pow((1 + percentageModifier),level)) + (flatModifier * level);
+            return (baseCost * Mathf.Pow((1 + percentageModifier),level)) + flatModifier;
         }
     }
 }
