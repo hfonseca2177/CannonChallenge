@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 4446773906526795338}
   - component: {fileID: 289626906470034571}
   - component: {fileID: 3707385451632924396}
+  - component: {fileID: 4446773906463225363}
   m_Layer: 0
   m_Name: CannonContainer
   m_TagString: Untagged
@@ -56,7 +57,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4446773906526795339}
-  m_LocalRotation: {x: -0, y: -0.71316403, z: -0, w: 0.7009973}
+  m_LocalRotation: {x: 0, y: -0.7131648, z: 0, w: 0.70099646}
   m_LocalPosition: {x: 0.17, y: -9.49, z: -38.64}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -86,7 +87,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 371162d0a24418b4db746ea7c99a5656, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -177,16 +178,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07d042eec878c85469c96f8c495a5e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rotationSpeed: 1
-  _shootSpeed: 5
+  _cannonDefinition: {fileID: 11400000, guid: 71b06891eb98f974c95660fe4f0332ca, type: 2}
+  _rotationSpeed:
+    CurrentValue: 0
+    Level: 0
+  _shotSpeed:
+    CurrentValue: 0
+    Level: 0
+  _areaEffect:
+    CurrentValue: 0
+    Level: 0
+  _smoothSpeed: 0.1
   _cannonballPrefab: {fileID: 987162324073607288, guid: 1727f44e4fe2bf84cb5cde745f1c9558,
     type: 3}
   _shotSpot: {fileID: 4446773905335812246}
-  _onMoveLeft: {fileID: 11400000, guid: 7d22693c411004442991b10eb4435684, type: 2}
-  _onMoveRight: {fileID: 11400000, guid: 0f01c2598d8502a4b94827280bcb5999, type: 2}
-  _onMoveUp: {fileID: 11400000, guid: b6c9ef76031f3cd408cfc511df7a8b41, type: 2}
-  _onMoveDown: {fileID: 11400000, guid: 53d5d613ded4c6b4cb02d0bf6c2fd1e0, type: 2}
+  _useSmoothDamp: 0
+  _cannonDataReference: {fileID: 11400000, guid: d910b8735c714af469034292ac0e58a8,
+    type: 2}
+  _onMove: {fileID: 11400000, guid: 7d22693c411004442991b10eb4435684, type: 2}
   _onFire: {fileID: 11400000, guid: 19619872226ba8e4a84d97d243e28c86, type: 2}
+--- !u!114 &4446773906463225363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4446773906526795339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f2bb6be0fd64f08a96e67e02c30111c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cannonDataReference: {fileID: 11400000, guid: d910b8735c714af469034292ac0e58a8,
+    type: 2}
+  _numPoints: 30
+  _pointsIntervalTime: 0.1
+  _targetMask:
+    serializedVersion: 2
+    m_Bits: 1
+  _shotSpot: {fileID: 4446773905335812246}
 --- !u!1001 &4446773905454748661
 PrefabInstance:
   m_ObjectHideFlags: 0

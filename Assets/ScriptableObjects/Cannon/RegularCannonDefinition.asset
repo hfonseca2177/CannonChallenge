@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0dbe45a218a4df2b2ced2a8792ada52, type: 3}
+  m_Name: RegularCannonDefinition
+  m_EditorClassIdentifier: 
+  Name: Regular Cannon
+  CannonPrefab: {fileID: 4446773906526795339, guid: 5ef53ca0df3652b4ba9f19e74dd1cdae,
+    type: 3}
+  RotationSpeed: {fileID: 11400000, guid: 69336cffb8821d4439cfc5b941ab3831, type: 2}
+  ShotSpeed: {fileID: 11400000, guid: b3d3b9496bfc165469a27d2d3f3efd7c, type: 2}
+  AreaEffect: {fileID: 11400000, guid: a0f7c9c9b910d144caf809565bf48cc4, type: 2}
