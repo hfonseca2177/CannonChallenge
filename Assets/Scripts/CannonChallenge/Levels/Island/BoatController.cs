@@ -71,9 +71,9 @@ namespace CannonChallenge.Levels.Island
                 var barrel = _barrelObjectPooling.Get();
                 var spawnPoint = _spawningPoints[i];
                 var barrelTransform = barrel.transform;
-                barrelTransform.position = spawnPoint.position;
-                //barrelTransform.rotation = spawnPoint.rotation;
                 barrelTransform.parent = transform;
+                barrelTransform.position = spawnPoint.position;
+                barrelTransform.rotation = spawnPoint.rotation;
                 _barrels.Add(barrel);
                 barrel.SetActive(true);
             }
@@ -97,7 +97,7 @@ namespace CannonChallenge.Levels.Island
 
         public void DeSpawnBoat()
         {
-            Debug.Log("Release BOAT");    
+            _isSailing = false;
             //release remaining barrels
             _barrels.ForEach(_barrelObjectPooling.Release);
             //release boat
