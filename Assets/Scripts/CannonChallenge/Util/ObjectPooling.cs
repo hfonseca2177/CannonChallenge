@@ -66,8 +66,11 @@ namespace CannonChallenge.Util
 
         private void Dispose()
         {
-            _pooledObjects.ForEach(Destroy);
-            _pooledObjects.Clear();
+            if (_pooledObjects != null)
+            {
+                _pooledObjects.ForEach(Destroy);
+                _pooledObjects.Clear();
+            }
             _activeObjects = 0;
         }
 

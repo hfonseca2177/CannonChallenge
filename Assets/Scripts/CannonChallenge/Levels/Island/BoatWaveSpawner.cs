@@ -1,9 +1,9 @@
+using System;
 using CannonChallenge.Events;
-using CannonChallenge.Levels.Island;
 using CannonChallenge.Util;
 using UnityEngine;
 
-namespace CannonChallenge.Levels.Insland
+namespace CannonChallenge.Levels.Island
 {
     /// <summary>
     /// Boat spawner system
@@ -13,6 +13,8 @@ namespace CannonChallenge.Levels.Insland
         [Header("Spawning options")]
         [Tooltip("Spawning position")]
         [SerializeField] private Transform _spawningPoint;
+        [Tooltip("Sail direction target")]
+        [SerializeField] private Transform _targetPoint;
         [Tooltip("Boat object pooling reference")]
         [SerializeField] private ObjectPooling _boatObjectPooling;
         [Header("Events")]
@@ -20,6 +22,9 @@ namespace CannonChallenge.Levels.Insland
         [SerializeField] private GameObjectEventAsset _onBoatRelease;
         [Tooltip("When a new wave starts")]
         [SerializeField] private IntEventAsset _onNewWave;
+        [Tooltip("Spawner status notification")]
+        [SerializeField] private VoidEventAsset _onSpawnerIdleNotify;
+        
 
         private void OnEnable()
         {
@@ -41,6 +46,7 @@ namespace CannonChallenge.Levels.Insland
         private void OnBoatReleaseEvent(GameObject boat)
         {
             _boatObjectPooling.Release(boat);
+            _onSpawnerIdleNotify.Invoke();
         }
 
         private void SpawnBoat()
@@ -50,8 +56,14 @@ namespace CannonChallenge.Levels.Insland
             boatTransform.position = _spawningPoint.position;
             boatTransform.rotation = _spawningPoint.rotation;
             BoatController boatController = boat.GetComponent<BoatController>();
-            boatController.InitSail();
             boat.SetActive(true);
+            boatController.InitSail(_targetPoint);
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.red;    
+            Gizmos.DrawLine(_spawningPoint.position, _targetPoint.position);
         }
     }
  }

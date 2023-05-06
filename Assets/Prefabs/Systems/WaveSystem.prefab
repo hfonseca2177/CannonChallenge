@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4794062113110478098
+--- !u!1 &788028182472033978
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4794062113110478109}
-  - component: {fileID: 4794062113110478108}
+  - component: {fileID: 788028182472033973}
+  - component: {fileID: 788028182472033972}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: WaveSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!4 &4794062113110478109
+--- !u!4 &788028182472033973
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4794062113110478098}
+  m_GameObject: {fileID: 788028182472033978}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,21 +32,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4794062113110478108
+--- !u!114 &788028182472033972
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4794062113110478098}
+  m_GameObject: {fileID: 788028182472033978}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c17942a687f94c40845bc2ff564d0cd, type: 3}
+  m_Script: {fileID: 11500000, guid: 43e07994aebd20d4e93d7df666cbc298, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _delayToStartStages: 2
-  _onGameStartNotify: {fileID: 11400000, guid: aec013256f75d124585f97b19d7ece7a, type: 2}
-  _onGameOverNotify: {fileID: 11400000, guid: b9dcd48e99c826b44978b7d8a66f3ca2, type: 2}
-  _onObjectiveSuccess: {fileID: 11400000, guid: 41bb78a36b352f7459e2355bac7c7024,
+  _numberOfWaves: 10
+  _numberOfSpawners: 1
+  _onGameStart: {fileID: 11400000, guid: aec013256f75d124585f97b19d7ece7a, type: 2}
+  _onNewWaveNotify: {fileID: 11400000, guid: 1661db76514187941bc5f1a92d5f1e97, type: 2}
+  _onSpawnerIdle: {fileID: 11400000, guid: aaebdebd2c5cda946b4afab9cb9cd046, type: 2}
+  _onGameOver: {fileID: 11400000, guid: b9dcd48e99c826b44978b7d8a66f3ca2, type: 2}
+  _onObjectiveSuccessNotify: {fileID: 11400000, guid: 41bb78a36b352f7459e2355bac7c7024,
     type: 2}
-  _onObjectiveFail: {fileID: 11400000, guid: 8b97939750ea95d41a76d7212c766333, type: 2}

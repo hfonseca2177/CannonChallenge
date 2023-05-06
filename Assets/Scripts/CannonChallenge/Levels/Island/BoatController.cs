@@ -2,6 +2,7 @@
 using CannonChallenge.Util;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace CannonChallenge.Levels.Island
 {
@@ -12,21 +13,23 @@ namespace CannonChallenge.Levels.Island
     {
         [Tooltip("Random generate speed from this range")]
         [SerializeField] private Vector2 _moveSpeedRange;
-        [Tooltip("Random generate ammont of targets available in the boat")]
+        [Tooltip("Random generate amount of targets available in the boat")]
         [SerializeField] private Vector2 _targetRange;
         [Tooltip("Barrel object pooling reference")]
-        [SerializeField] private ObjectPooling _barrelObjectPooling;
+        [SerializeField] private ObjectPoolingReference _barrelObjectPoolingRef;
         [Tooltip("Barrel spawning points")]
         [SerializeField] private Transform[] _spawningPoints;
         [Header("Events")]
         [Tooltip("when boat finishes its cross")]
-        [SerializeField] private GameObjectEventAsset _onBoatRelease;
+        [SerializeField] private GameObjectEventAsset _onBoatReleaseNotify;
         [Tooltip("when barrel is destroyed")]
         [SerializeField] private GameObjectEventAsset _onBarrelRelease;
 
+        private ObjectPooling _barrelObjectPooling;
         private List<GameObject> _barrels;
         private bool _isSailing;
         private float _speed;
+        private Transform _target;
 
         private void OnEnable()
         {
@@ -44,20 +47,22 @@ namespace CannonChallenge.Levels.Island
             _barrelObjectPooling.Release(barrel);
         }
 
-        public void InitSail()
+        public void InitSail(Transform target)
         {
-            SetSailSpeed();
+            _target = target;    
             SpawnBarrels();
+            SetSailSpeed();
             _isSailing = true;
         }
 
         private void SetSailSpeed()
         {
-            float _speed = Random.Range(_moveSpeedRange.x, _moveSpeedRange.y + 1);
+            _speed = Random.Range(_moveSpeedRange.x, _moveSpeedRange.y + 1);
         }
 
         private void SpawnBarrels()
         {   
+            _barrelObjectPooling = _barrelObjectPoolingRef.Pool;
             int barrelCount = (int)Random.Range(_targetRange.x, _targetRange.y + 1);
             int maxBarrels = Mathf.Clamp(barrelCount, 1, _spawningPoints.Length);
             _barrels = new List<GameObject>(maxBarrels);
@@ -67,14 +72,14 @@ namespace CannonChallenge.Levels.Island
                 var spawnPoint = _spawningPoints[i];
                 var barrelTransform = barrel.transform;
                 barrelTransform.position = spawnPoint.position;
-                barrelTransform.rotation = spawnPoint.rotation;
+                //barrelTransform.rotation = spawnPoint.rotation;
                 barrelTransform.parent = transform;
                 _barrels.Add(barrel);
                 barrel.SetActive(true);
             }
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             if(!_isSailing)
             {
@@ -86,21 +91,17 @@ namespace CannonChallenge.Levels.Island
         private void Sail()
         {
             Transform boatTransform = transform;
-            Vector3 newPosition = boatTransform.position * _speed * Time.deltaTime;
+            Vector3 newPosition = Vector3.MoveTowards(boatTransform.position, _target.position, _speed * Time.deltaTime);
             boatTransform.position = newPosition;
         }
 
-        private void OnTriggerEnter(Collider other)
+        public void DeSpawnBoat()
         {
-            DespawnBoat();
-        }
-
-        private void DespawnBoat()
-        {
+            Debug.Log("Release BOAT");    
             //release remaining barrels
             _barrels.ForEach(_barrelObjectPooling.Release);
             //release boat
-            _onBoatRelease.Invoke(this.gameObject);
+            _onBoatReleaseNotify.Invoke(this.gameObject);
         }
     }
 }
