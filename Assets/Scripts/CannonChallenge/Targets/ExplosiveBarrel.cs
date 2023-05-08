@@ -44,7 +44,7 @@ namespace CannonChallenge.Targets
                         rigidBody.AddExplosionForce(_explosionDefinition.Force, transform.position, _explosionDefinition.Radius);
                     }
                 }
-                _onMultiHitExplosionNotify.Invoke(size);
+                _onMultiHitExplosionNotify.Invoke(size * _barrelDefinition.Score);
             }
             _onExplosionNotify.Invoke(this.gameObject);
         }

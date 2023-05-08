@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 621361694}
   m_Layer: 7
   m_Name: CoconutBall
-  m_TagString: Untagged
+  m_TagString: CannonBall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
