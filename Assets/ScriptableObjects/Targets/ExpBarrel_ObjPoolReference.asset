@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ed1be5a78214d849f97e2c972398a95, type: 3}
-  m_Name: BaseBarrelDefinition
+  m_Script: {fileID: 11500000, guid: d5e7196d8d275534397de9412cd26b89, type: 3}
+  m_Name: ExpBarrel_ObjPoolReference
   m_EditorClassIdentifier: 
-  Score: 1
-  Mass: 0.5
+  Pool: {fileID: 0}

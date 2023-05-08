@@ -12,6 +12,8 @@ namespace CannonChallenge.Targets
         [SerializeField] private GameObjectEventAsset _onExplosionNotify;
         [SerializeField] private IntEventAsset _onMultiHitExplosionNotify;
         [SerializeField] private LayerMask _explosionMask;
+        [Tooltip("when barrel is destroyed")]
+        [SerializeField] private GameObjectEventAsset _onBarrelReleaseNotify;
 
         protected override void OnDirectHit(Collision collision)
         {
@@ -47,6 +49,7 @@ namespace CannonChallenge.Targets
                 _onMultiHitExplosionNotify.Invoke(size);
             }
             _onExplosionNotify.Invoke(this.gameObject);
+            _onBarrelReleaseNotify.Invoke(this.gameObject);
         }
     }
 }

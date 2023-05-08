@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 505cea7341d349ecb141ce8ecacb5f33, type: 3}
   m_Name: BarrelExplosionDefinition
   m_EditorClassIdentifier: 
-  Force: 500
-  Radius: 2
-  Trigger: 0.5
-  HitCap: 5
+  Force: 1000
+  Radius: 3
+  Trigger: 0.2
+  HitCap: 8

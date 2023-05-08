@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 47bc7f323be2ec84eb87099029748785, type: 2}
+  - {fileID: 2100000, guid: 898645291ac0df74d92d21286c67137f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -130,6 +130,8 @@ MonoBehaviour:
   _barrelDefinition: {fileID: 11400000, guid: eae0e0cc0390ddc4384de23674a39e39, type: 2}
   _onBarrelDirectHitNotify: {fileID: 11400000, guid: be21fb0e763831247b7f63700d959bd9,
     type: 2}
+  _onBarrelHitFeedbackNotify: {fileID: 11400000, guid: e46a840de42be1943b655daaed569dc9,
+    type: 2}
   _explosionDefinition: {fileID: 11400000, guid: 39d2694a0b3a6964aae20f723a38a39a,
     type: 2}
   _onExplosionNotify: {fileID: 11400000, guid: b0ac48e7daa6e604f978d32536effe66, type: 2}
@@ -138,3 +140,5 @@ MonoBehaviour:
   _explosionMask:
     serializedVersion: 2
     m_Bits: 256
+  _onBarrelReleaseNotify: {fileID: 11400000, guid: c064a525e961c8340b0ab34de238d9de,
+    type: 2}

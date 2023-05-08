@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4308807dfef349f8a75f1abba105843d, type: 3}
   m_Name: BoatDefinition
   m_EditorClassIdentifier: 
+  ExplosiveChance: 0.4
   MinNumBarrels: 1
   MaxNumBarrels: 10
-  MinSpeed: 5
-  MaxSpeed: 10
+  MinSpeed: 7
+  MaxSpeed: 12

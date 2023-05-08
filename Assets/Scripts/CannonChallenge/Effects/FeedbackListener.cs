@@ -57,14 +57,15 @@ namespace CannonChallenge.Effects
         {
             if(_hasSfx) PlaySound();
             if(_hasVfx) PlayVFX(transform.position);
-            if (_hasOwnVfx) _visualEffect.Play();
+            if (_hasOwnVfx) PlayNestedVfx();
         }
 
         private void OnFeedbackEvent(GameObject target)
         {
-            if(_hasSfx) PlaySound();
-            if(_hasVfx) PlayVFX(target.transform.position);
-            if (_hasOwnVfx) PlayNestedVfx();
+            Vector3 position = target.transform.position;
+            if (_hasSfx) PlaySound();
+            if(_hasVfx) PlayVFX(position);
+            if (_hasOwnVfx) PlayNestedVfx(position);
         }
 
         private void PlaySound()
@@ -73,7 +74,13 @@ namespace CannonChallenge.Effects
         }
 
         private void PlayNestedVfx()
-        {   
+        {
+            _visualEffect.Play();
+        }
+
+        private void PlayNestedVfx(Vector3 position)
+        {
+            _visualEffect.gameObject.transform.position = position;
             _visualEffect.Play();
         }
 
