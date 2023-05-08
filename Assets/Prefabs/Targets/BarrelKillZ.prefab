@@ -112,3 +112,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _onBarrelReleaseNotify: {fileID: 11400000, guid: f95bf5d6806072a48b09938a771d0386,
     type: 2}
+  _onBarrelInWaterNotify: {fileID: 11400000, guid: f0c8df4ccb748d44ea9ad2beda9035f1,
+    type: 2}

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace CannonChallenge.Util
@@ -8,16 +9,41 @@ namespace CannonChallenge.Util
     /// </summary>
     public class SceneLoader : MonoBehaviour
     {
-
+        private const string _summarySceneName = "Summary"; 
+        public void LoadMenu()
+        {
+            SceneManager.LoadScene(sceneBuildIndex: 0);
+        }
+        
         public void LoadGame()
         {
             SceneManager.LoadScene(sceneBuildIndex: 1);
         }
-        
-        public void LoadSummary()
+
+        public void LoadSummaryAdditive()
         {
-            SceneManager.LoadScene(sceneBuildIndex: 2);
+            StartCoroutine(LoadAdditiveSceneAsync(_summarySceneName));
         }
+
+        public void UnloadSummary()
+        {
+            StartCoroutine(UnloadSceneAsync(_summarySceneName));
+        }
+        
+        //load async additive scene
+        private IEnumerator LoadAdditiveSceneAsync(string sceneName)
+        {
+            AsyncOperation load = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+            yield return load;
+        }
+        
+        //unload async scene
+        private IEnumerator UnloadSceneAsync(string sceneName)
+        {
+            AsyncOperation unload = SceneManager.UnloadSceneAsync(sceneName);
+            yield return unload;
+        }
+
 
         public void QuitGame()
         {

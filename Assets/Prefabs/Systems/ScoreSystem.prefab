@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa88134512bbca34f983a20de25e6364, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _scoreDefinition: {fileID: 11400000, guid: be5b6eea6f528d14192d4de3feffbb47, type: 2}
   _onGameStart: {fileID: 11400000, guid: aec013256f75d124585f97b19d7ece7a, type: 2}
   _onGameOver: {fileID: 11400000, guid: b9dcd48e99c826b44978b7d8a66f3ca2, type: 2}
   _scoreDao: {fileID: 0}
@@ -53,3 +54,5 @@ MonoBehaviour:
   _onBarrelDirectHit: {fileID: 11400000, guid: be21fb0e763831247b7f63700d959bd9, type: 2}
   _onMultiHitExplosion: {fileID: 11400000, guid: 8ad45ef81efe36640a2ad1230baae998,
     type: 2}
+  _onBarrelInWater: {fileID: 11400000, guid: f0c8df4ccb748d44ea9ad2beda9035f1, type: 2}
+  _onFire: {fileID: 11400000, guid: 19619872226ba8e4a84d97d243e28c86, type: 2}

@@ -10,7 +10,7 @@ namespace CannonChallenge.Systems
     /// </summary>
     public class ScoreSystem : MonoBehaviour
     {
-
+        [SerializeField] private ScoreDefinition _scoreDefinition;
         [Tooltip("when a new game started")]
         [SerializeField] private VoidEventAsset _onGameStart;
         [Tooltip("when game is over")]
@@ -24,7 +24,8 @@ namespace CannonChallenge.Systems
         [Header("Score Award Events")]
         [SerializeField] private IntEventAsset _onBarrelDirectHit;
         [SerializeField] private IntEventAsset _onMultiHitExplosion;
-
+        [SerializeField] private VoidEventAsset _onBarrelInWater;
+        [SerializeField] private VoidEventAsset _onFire;
         
         private LevelScore _bestScore;
         private LevelScore _currentScore;
@@ -34,7 +35,9 @@ namespace CannonChallenge.Systems
             _onGameStart.OnInvoked.AddListener(OnGameStartEvent);
             _onGameOver.OnInvoked.AddListener(OnGameOverEvent);
             _onBarrelDirectHit.OnInvoked.AddListener(OnBarrelHitEvent);
-            _onMultiHitExplosion.OnInvoked.AddListener(OnBarrelHitEvent);
+            _onMultiHitExplosion.OnInvoked.AddListener(OnBarrelMultiHitEvent);
+            _onBarrelInWater.OnInvoked.AddListener(OnBarrelInWaterEvent);
+            _onFire.OnInvoked.AddListener(OnFireEvent);
         }
 
         private void OnDisable()
@@ -42,12 +45,32 @@ namespace CannonChallenge.Systems
             _onGameStart.OnInvoked.RemoveListener(OnGameStartEvent);
             _onGameOver.OnInvoked.RemoveListener(OnGameOverEvent);
             _onBarrelDirectHit.OnInvoked.RemoveListener(OnBarrelHitEvent);
-            _onMultiHitExplosion.OnInvoked.RemoveListener(OnBarrelHitEvent);   
+            _onMultiHitExplosion.OnInvoked.RemoveListener(OnBarrelMultiHitEvent);
+            _onBarrelInWater.OnInvoked.RemoveListener(OnBarrelInWaterEvent);
+            _onFire.OnInvoked.RemoveListener(OnFireEvent);
+        }
+
+        private void OnFireEvent()
+        {
+            _currentScore.Shots++;
+        }
+
+        private void OnBarrelInWaterEvent()
+        {
+            _currentScore.Score += _scoreDefinition.TargetOutBaseBonus;
+            _onScoreUpdateNotify.Invoke(_currentScore.Score);
+        }
+
+        private void OnBarrelMultiHitEvent(int amount)
+        {
+            _currentScore.Score += amount * _scoreDefinition.MultiTargetBonus;
+            _onScoreUpdateNotify.Invoke(_currentScore.Score);
         }
 
         private void OnBarrelHitEvent(int score)
         {
-            _currentScore.Score += score;
+            _currentScore.Accuracy++;
+            _currentScore.Score += score + _scoreDefinition.TargetDirectHitBonus;
             _onScoreUpdateNotify.Invoke(_currentScore.Score);
         }
 
@@ -60,7 +83,7 @@ namespace CannonChallenge.Systems
         private void OnGameOverEvent()
         {
             SaveData();
-            _sceneLoader.LoadSummary();
+            _sceneLoader.LoadSummaryAdditive();
         }
 
         private void LoadData()
@@ -80,12 +103,5 @@ namespace CannonChallenge.Systems
             _bestScore.UpdateRecords(_currentScore);
             _scoreDao.Save(_bestScore);
         }
-        
-        public void SkipToSummary()
-        {
-            SaveData();
-            _sceneLoader.LoadSummary();
-        }
-
     }
 }

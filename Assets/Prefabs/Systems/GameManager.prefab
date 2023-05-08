@@ -52,3 +52,4 @@ MonoBehaviour:
   _onObjectiveFail: {fileID: 11400000, guid: 8b97939750ea95d41a76d7212c766333, type: 2}
   _onNotificationNotify: {fileID: 11400000, guid: d7cb6d84feeadea4ba19d3a435cc034f,
     type: 2}
+  _sceneLoader: {fileID: 0}
