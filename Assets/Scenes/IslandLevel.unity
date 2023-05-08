@@ -182,6 +182,54 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 647965146526124942}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &100675493
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 100675494}
+  - component: {fileID: 100675495}
+  m_Layer: 0
+  m_Name: BarrelImpactPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &100675494
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100675493}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1000094759}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &100675495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100675493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f18594ac8e85b54aa0426c9704e8ad8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectPrefab: {fileID: 4239482092443911361, guid: fdd5abea10da04f438af9db0ed631352,
+    type: 3}
+  _warmUpQuantity: 3
+  _activeObjects: 0
 --- !u!4 &107826206 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3896775267182366044, guid: 10b66e60c997d0d4d93257728628ead2,
@@ -657,12 +705,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sfx: {fileID: 1000094762}
-  _vfxPooling: {fileID: 0}
+  _vfxPooling: {fileID: 100675495}
   _visualEffect: {fileID: 0}
   _onObjectFeedbackEvent: {fileID: 11400000, guid: e46a840de42be1943b655daaed569dc9,
     type: 2}
   _onFeedbackEvent: {fileID: 0}
-  _duration: 0
+  _duration: 2
 --- !u!1 &1036660018
 GameObject:
   m_ObjectHideFlags: 0
