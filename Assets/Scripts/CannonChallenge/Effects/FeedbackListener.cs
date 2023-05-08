@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.VFX;
 
-namespace CannonChallenge.VFX
+namespace CannonChallenge.Effects
 {
     /// <summary>
     /// Feedback manager - plays a visual or sound effect based on a event  
