@@ -12,7 +12,7 @@ namespace CannonChallenge.Player
         private PlayerInput _playerInput;
         private InputAction _moveAction;
         
-        private void Awake()
+        protected virtual void Awake()
         {
             _playerInput = GetComponent<PlayerInput>();
             _moveAction = _playerInput.actions["Move"];

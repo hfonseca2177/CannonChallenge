@@ -2114,6 +2114,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1878699851}
     m_Modifications:
+    - target: {fileID: 194221342, guid: da241fb45a41f2148aaabd5ab1bf4ebc, type: 3}
+      propertyPath: _emotes.Array.data[0]
+      value: 
+      objectReference: {fileID: 6611196976493856391}
+    - target: {fileID: 194221342, guid: da241fb45a41f2148aaabd5ab1bf4ebc, type: 3}
+      propertyPath: _emotes.Array.data[2]
+      value: 
+      objectReference: {fileID: 6611196976493856393}
     - target: {fileID: 6611196976419443608, guid: da241fb45a41f2148aaabd5ab1bf4ebc,
         type: 3}
       propertyPath: m_RootOrder
@@ -2176,6 +2184,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da241fb45a41f2148aaabd5ab1bf4ebc, type: 3}
+--- !u!82 &6611196976493856391 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6611196976493856391, guid: da241fb45a41f2148aaabd5ab1bf4ebc,
+    type: 3}
+  m_PrefabInstance: {fileID: 6611196976493856389}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &6611196976493856393 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6611196976493856393, guid: da241fb45a41f2148aaabd5ab1bf4ebc,
+    type: 3}
+  m_PrefabInstance: {fileID: 6611196976493856389}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6666928694015767630
 PrefabInstance:
   m_ObjectHideFlags: 0
