@@ -3,6 +3,7 @@ using CannonChallenge.Events;
 using CannonChallenge.Util;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.VFX;
 
 namespace CannonChallenge.VFX
 {
@@ -13,19 +14,23 @@ namespace CannonChallenge.VFX
     {
         [SerializeField] private AudioSource _sfx;
         [SerializeField] private ObjectPooling _vfxPooling;
+        [SerializeField] private VisualEffect _visualEffect;
         [SerializeField] private GameObjectEventAsset _onObjectFeedbackEvent;
         [SerializeField] private VoidEventAsset _onFeedbackEvent;
         [SerializeField] private float _duration;
         
         private bool _hasSfx;
         private bool _hasVfx;
+        private bool _hasOwnVfx;
         private WaitForSeconds _effectDuration;
+      
 
         private void OnEnable()
         {
             _hasSfx = !_sfx.IsUnityNull();
             _hasVfx = !_vfxPooling.IsUnityNull();
-            
+            _hasOwnVfx = !_visualEffect.IsUnityNull();
+
             if (_onFeedbackEvent != null)
             {
                 _onFeedbackEvent.OnInvoked.AddListener(OnFeedbackEvent);
@@ -52,12 +57,14 @@ namespace CannonChallenge.VFX
         {
             if(_hasSfx) PlaySound();
             if(_hasVfx) PlayVFX(transform.position);
+            if (_hasOwnVfx) _visualEffect.Play();
         }
 
         private void OnFeedbackEvent(GameObject target)
         {
             if(_hasSfx) PlaySound();
             if(_hasVfx) PlayVFX(target.transform.position);
+            if (_hasOwnVfx) PlayNestedVfx();
         }
 
         private void PlaySound()
@@ -65,10 +72,16 @@ namespace CannonChallenge.VFX
             _sfx.Play();
         }
 
+        private void PlayNestedVfx()
+        {   
+            _visualEffect.Play();
+        }
+
         private void PlayVFX(Vector3 position)
         {
             var effect = _vfxPooling.Get();
             effect.transform.position = position;
+            effect.SetActive(true);
             StartCoroutine(DisposeVFX(effect));
         }
 

@@ -10,6 +10,7 @@ namespace CannonChallenge.Targets
     {
         [SerializeField, Expandable] protected BarrelDefinition _barrelDefinition;
         [SerializeField] private IntEventAsset _onBarrelDirectHitNotify;
+        [SerializeField] private GameObjectEventAsset _onBarrelHitFeedbackNotify;
 
         private Rigidbody _rigidbody;
 
@@ -30,6 +31,7 @@ namespace CannonChallenge.Targets
         protected virtual void OnDirectHit(Collision collision)
         {
             _onBarrelDirectHitNotify.Invoke(_barrelDefinition.Score);
+            _onBarrelHitFeedbackNotify.Invoke(this.gameObject);
         }
 
     }

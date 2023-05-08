@@ -130,3 +130,5 @@ MonoBehaviour:
   _barrelDefinition: {fileID: 11400000, guid: 6f4dcedacb7b3b144936177a2b6bc272, type: 2}
   _onBarrelDirectHitNotify: {fileID: 11400000, guid: be21fb0e763831247b7f63700d959bd9,
     type: 2}
+  _onBarrelHitFeedbackNotify: {fileID: 11400000, guid: e46a840de42be1943b655daaed569dc9,
+    type: 2}

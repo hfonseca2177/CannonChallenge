@@ -52,7 +52,10 @@ namespace CannonChallenge.Systems
 
         private void OnFireEvent()
         {
-            _currentScore.Shots++;
+            if(_currentScore!=null)
+            {
+                _currentScore.Shots++;
+            }
         }
 
         private void OnBarrelInWaterEvent()
