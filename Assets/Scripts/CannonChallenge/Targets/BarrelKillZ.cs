@@ -1,7 +1,7 @@
 ﻿using CannonChallenge.Events;
 using UnityEngine;
 
-namespace CannonChallenge.Levels.Island
+namespace CannonChallenge.Targets
 {
     /// <summary>
     /// Trigger barrel destroy

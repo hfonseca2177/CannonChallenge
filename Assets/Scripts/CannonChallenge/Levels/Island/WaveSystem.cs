@@ -23,7 +23,9 @@ namespace CannonChallenge.Levels.Island
         [SerializeField] private VoidEventAsset _onGameOver;
         [Tooltip("Notify that objective was successfully completed")]
         [SerializeField] private VoidEventAsset _onObjectiveSuccessNotify;
- 
+        [Tooltip("Notify message to player")]
+        [SerializeField] private StringEventAsset _onNotificationNotify;
+        
         private WavePhaseEnum _state = WavePhaseEnum.Disabled;
         private int _currentWaveIndex;
         private int _currentSpawnersIdle;
@@ -80,11 +82,12 @@ namespace CannonChallenge.Levels.Island
             {
                 _state = WavePhaseEnum.Disabled;
                 _onObjectiveSuccessNotify.Invoke();
+                return;
             }
             _state = WavePhaseEnum.OnCooldown;
             _currentSpawnersIdle = 0;
             _onNewWaveNotify.Invoke(_currentWaveIndex);
-            
+            _onNotificationNotify.Invoke($"Wave {_currentWaveIndex}");
         }
 
         public void Restart()

@@ -1,5 +1,4 @@
-﻿using System;
-using CannonChallenge.Events;
+﻿using CannonChallenge.Events;
 using UnityEngine;
 
 namespace CannonChallenge.Systems
@@ -21,6 +20,8 @@ namespace CannonChallenge.Systems
         [SerializeField] private VoidEventAsset _onObjectiveSuccess;
         [Tooltip("Notify when player fails objective")]
         [SerializeField] private VoidEventAsset _onObjectiveFail;
+        [Tooltip("Notify message to player")]
+        [SerializeField] private StringEventAsset _onNotificationNotify;
         
         private bool _gameOn;
         private float _elapsedTime;
@@ -39,7 +40,7 @@ namespace CannonChallenge.Systems
 
         private void OnObjectiveSuccessEvent()
         {
-            
+            _onNotificationNotify.Invoke("Level Completed!");
         }
 
         private void OnObjectiveFailEvent()

@@ -12,9 +12,7 @@ namespace CannonChallenge.Levels.Island
     public class BoatController : MonoBehaviour
     {
         [Tooltip("Random generate speed from this range")]
-        [SerializeField] private Vector2 _moveSpeedRange;
-        [Tooltip("Random generate amount of targets available in the boat")]
-        [SerializeField] private Vector2 _targetRange;
+        [SerializeField] private BoatDefinition _boatDefinition;
         [Tooltip("Barrel object pooling reference")]
         [SerializeField] private ObjectPoolingReference _barrelObjectPoolingRef;
         [Tooltip("Barrel spawning points")]
@@ -57,13 +55,13 @@ namespace CannonChallenge.Levels.Island
 
         private void SetSailSpeed()
         {
-            _speed = Random.Range(_moveSpeedRange.x, _moveSpeedRange.y + 1);
+            _speed = Random.Range(_boatDefinition.MinSpeed, _boatDefinition.MaxSpeed + 1);
         }
 
         private void SpawnBarrels()
         {   
             _barrelObjectPooling = _barrelObjectPoolingRef.Pool;
-            int barrelCount = (int)Random.Range(_targetRange.x, _targetRange.y + 1);
+            int barrelCount = Random.Range(_boatDefinition.MinNumBarrels, _boatDefinition.MaxNumBarrels + 1);
             int maxBarrels = Mathf.Clamp(barrelCount, 1, _spawningPoints.Length);
             _barrels = new List<GameObject>(maxBarrels);
             for (int i=0; i < maxBarrels; i++)

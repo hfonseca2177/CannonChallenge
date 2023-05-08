@@ -50,3 +50,5 @@ MonoBehaviour:
   _onObjectiveSuccess: {fileID: 11400000, guid: 41bb78a36b352f7459e2355bac7c7024,
     type: 2}
   _onObjectiveFail: {fileID: 11400000, guid: 8b97939750ea95d41a76d7212c766333, type: 2}
+  _onNotificationNotify: {fileID: 11400000, guid: d7cb6d84feeadea4ba19d3a435cc034f,
+    type: 2}

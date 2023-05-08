@@ -1,0 +1,11 @@
+.label {
+    -unity-font-style: bold;
+    font-size: 35px;
+}
+
+.fieldValue {
+    font-size: 35px;
+    -unity-font-style: bold;
+    width: 142px;
+    -unity-text-align: upper-right;
+}

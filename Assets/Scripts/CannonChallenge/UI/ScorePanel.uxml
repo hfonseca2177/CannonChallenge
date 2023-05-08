@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Scripts/CannonChallenge/UI/ScorePanel.uss?fileID=7433441132597879392&amp;guid=a6dca512eff90404ba5611558da54d8f&amp;type=3#ScorePanel" />
+    <ui:VisualElement name="ScorePanel" style="height: auto; flex-direction: row; -unity-text-outline-color: rgb(0, 0, 0);">
+        <ui:Label text="Score:" display-tooltip-when-elided="true" name="ScoreLabel" class="label" style="-unity-text-outline-width: 1px; color: rgb(255, 255, 255); opacity: 1;" />
+        <ui:Label text="000" display-tooltip-when-elided="true" name="ScoreValue" class="fieldValue" style="color: rgb(255, 231, 73); width: 180px; -unity-text-align: upper-left; margin-left: 5px; -unity-text-outline-width: 1px;" />
+    </ui:VisualElement>
+</ui:UXML>

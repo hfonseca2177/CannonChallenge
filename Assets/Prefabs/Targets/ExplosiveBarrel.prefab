@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 8413373926809126939}
   - component: {fileID: 4398808559495168997}
   - component: {fileID: 4398808559495168996}
+  - component: {fileID: 4657267576317571095}
   m_Layer: 8
-  m_Name: Barell
+  m_Name: ExplosiveBarrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -114,3 +115,26 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.56780624, y: 0.53102404, z: 1.0532783}
   m_Center: {x: -0.031764984, y: -0.030249454, z: 0.5218345}
+--- !u!114 &4657267576317571095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8413373926806914273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a234590a4d3146d9bdac1d92b8d0a11c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _barrelDefinition: {fileID: 11400000, guid: eae0e0cc0390ddc4384de23674a39e39, type: 2}
+  _onBarrelDirectHitNotify: {fileID: 11400000, guid: be21fb0e763831247b7f63700d959bd9,
+    type: 2}
+  _explosionDefinition: {fileID: 11400000, guid: 39d2694a0b3a6964aae20f723a38a39a,
+    type: 2}
+  _onExplosionNotify: {fileID: 11400000, guid: b0ac48e7daa6e604f978d32536effe66, type: 2}
+  _onMultiHitExplosionNotify: {fileID: 11400000, guid: 8ad45ef81efe36640a2ad1230baae998,
+    type: 2}
+  _explosionMask:
+    serializedVersion: 2
+    m_Bits: 256

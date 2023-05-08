@@ -52,3 +52,5 @@ MonoBehaviour:
   _onGameOver: {fileID: 11400000, guid: b9dcd48e99c826b44978b7d8a66f3ca2, type: 2}
   _onObjectiveSuccessNotify: {fileID: 11400000, guid: 41bb78a36b352f7459e2355bac7c7024,
     type: 2}
+  _onNotificationNotify: {fileID: 11400000, guid: d7cb6d84feeadea4ba19d3a435cc034f,
+    type: 2}
