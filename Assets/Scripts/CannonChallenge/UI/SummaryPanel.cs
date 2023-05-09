@@ -1,4 +1,5 @@
 ﻿using CannonChallenge.Systems.Score;
+using CannonChallenge.Util;
 using TMPro;
 using UnityEngine;
 
@@ -9,14 +10,16 @@ namespace CannonChallenge.UI
     /// </summary>
     public class SummaryPanel : MonoBehaviour
     {
+        [Tooltip("Level score reference - reference for last game played")]
+        [SerializeField] private LastScoreReference _lastScoreReference;
+        [Tooltip("Load game scenes")]
+        [SerializeField] private SceneLoader _sceneLoader;
         [SerializeField] private TextMeshProUGUI _scoreTxt;
         [SerializeField] private TextMeshProUGUI _hitsTxt;
         [SerializeField] private TextMeshProUGUI _shotsTxt;
-        [Tooltip("Score Data serializer")]
-        [SerializeField] private ScoreDAO _scoreDao;
+        [SerializeField] private Color _normalColor;
+        [SerializeField] private Color _recordColor;
 
-        private LevelScore _bestScore;
-        
         private void Start()
         {
             LoadData();
@@ -24,14 +27,22 @@ namespace CannonChallenge.UI
 
         private void LoadData()
         {
-            _bestScore = _scoreDao.Retrieve();
-            if (_bestScore == null)
-            {
-                return;
-            }
-            _scoreTxt.text = _bestScore.Score.ToString();
-            _hitsTxt.text = Mathf.FloorToInt(_bestScore.Accuracy).ToString();
-            _shotsTxt.text = _bestScore.Shots.ToString();
+            LevelScore last = _lastScoreReference.LastScore;
+            LevelScore best = _lastScoreReference.BestScore;            
+            SetScoreData(_scoreTxt, best.Score.ToString(), last.Score == best.Score);
+            SetScoreData(_hitsTxt, best.Accuracy.ToString(), last.Accuracy == best.Accuracy);
+            SetScoreData(_shotsTxt, best.Shots.ToString(), last.Shots == best.Shots);
+        }
+
+        private void SetScoreData(TextMeshProUGUI _field, string valueStr, bool bested)
+        {
+            _field.text = bested ? valueStr + " *" : valueStr;
+            _field.color = bested ? _recordColor : _normalColor;
+        }
+
+        public void LoadLastLevel()
+        {
+            _sceneLoader.LoadSceneByIndex(_lastScoreReference.LevelReference.LevelIndex);
         }
     }
 }

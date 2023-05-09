@@ -49,6 +49,8 @@ MonoBehaviour:
   _onGameOver: {fileID: 11400000, guid: b9dcd48e99c826b44978b7d8a66f3ca2, type: 2}
   _scoreDao: {fileID: 0}
   _sceneLoader: {fileID: 0}
+  _lastScoreReference: {fileID: 11400000, guid: eed6e341ed0e8af42b9f90687b850de2,
+    type: 2}
   _onScoreUpdateNotify: {fileID: 11400000, guid: ef90a978da1f4da459daca424567c335,
     type: 2}
   _onBarrelDirectHit: {fileID: 11400000, guid: be21fb0e763831247b7f63700d959bd9, type: 2}

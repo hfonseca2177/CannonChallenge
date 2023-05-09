@@ -1822,6 +1822,12 @@ PrefabInstance:
       propertyPath: _sceneLoader
       value: 
       objectReference: {fileID: 762797344}
+    - target: {fileID: 3545071537069834854, guid: db9b8125f9102bc4a86657bdea9b6eae,
+        type: 3}
+      propertyPath: _levelReference
+      value: 
+      objectReference: {fileID: 11400000, guid: 8c073ac7f5fc4f344aa2af6ff676a516,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db9b8125f9102bc4a86657bdea9b6eae, type: 3}
 --- !u!1001 &3862537435514635018
@@ -2709,6 +2715,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 249088294}
     m_Modifications:
+    - target: {fileID: 6666928695005184310, guid: 721674bd1d0069541b3d32aa15ca8e5e,
+        type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6666928695005184312, guid: 721674bd1d0069541b3d32aa15ca8e5e,
         type: 3}
       propertyPath: m_Name

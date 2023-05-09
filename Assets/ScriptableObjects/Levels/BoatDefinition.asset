@@ -15,5 +15,5 @@ MonoBehaviour:
   ExplosiveChance: 0.4
   MinNumBarrels: 1
   MaxNumBarrels: 10
-  MinSpeed: 7
-  MaxSpeed: 12
+  MinSpeed: 10
+  MaxSpeed: 15

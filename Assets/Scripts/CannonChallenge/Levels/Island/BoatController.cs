@@ -99,7 +99,8 @@ namespace CannonChallenge.Levels.Island
                 barrelTransform.parent = transform;
                 barrelTransform.position = spawnPoint.position;
                 barrelTransform.rotation = spawnPoint.rotation;
-                
+                var rb = barrelTransform.GetComponent<Rigidbody>();
+                rb.velocity = Vector3.zero;
                 barrel.SetActive(true);
             }
         }
@@ -125,6 +126,7 @@ namespace CannonChallenge.Levels.Island
             _isSailing = false;
             //release remaining barrels
             _barrels.ForEach(_barrelObjectPooling.Release);
+            _explosiveBarrels.ForEach(_explosiveBarrelObjectPooling.Release);
             //release boat
             _onBoatReleaseNotify.Invoke(this.gameObject);
         }

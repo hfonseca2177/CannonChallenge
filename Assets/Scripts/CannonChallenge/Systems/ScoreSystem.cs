@@ -1,6 +1,7 @@
 using CannonChallenge.Events;
 using CannonChallenge.Systems.Score;
 using CannonChallenge.Util;
+using System.Collections;
 using UnityEngine;
 
 namespace CannonChallenge.Systems
@@ -11,14 +12,19 @@ namespace CannonChallenge.Systems
     public class ScoreSystem : MonoBehaviour
     {
         [SerializeField] private ScoreDefinition _scoreDefinition;
-        [Tooltip("when a new game started")]
-        [SerializeField] private VoidEventAsset _onGameStart;
-        [Tooltip("when game is over")]
-        [SerializeField] private VoidEventAsset _onGameOver;
+        [Tooltip("reference to the current level")]
+        [SerializeField] private LevelReference _levelReference;
         [Tooltip("Score Data serializer")]
         [SerializeField] private ScoreDAO _scoreDao;
         [Tooltip("Load game scenes")]
         [SerializeField] private SceneLoader _sceneLoader;
+        [Tooltip("Level score reference - the system keeps this reference for last game played updated")]
+        [SerializeField] private LastScoreReference _lastScoreReference;
+        [Header("Events")]
+        [Tooltip("when a new game started")]
+        [SerializeField] private VoidEventAsset _onGameStart;
+        [Tooltip("when game is over")]
+        [SerializeField] private VoidEventAsset _onGameOver;
         [Tooltip("Notifies whenever a score is awarded")]
         [SerializeField] private IntEventAsset _onScoreUpdateNotify;
         [Header("Score Award Events")]
@@ -26,7 +32,8 @@ namespace CannonChallenge.Systems
         [SerializeField] private IntEventAsset _onMultiHitExplosion;
         [SerializeField] private VoidEventAsset _onBarrelInWater;
         [SerializeField] private VoidEventAsset _onFire;
-        
+
+        private readonly WaitForSeconds _waitToLoadSummary = new(3);
         private LevelScore _bestScore;
         private LevelScore _currentScore;
         
@@ -86,7 +93,6 @@ namespace CannonChallenge.Systems
         private void OnGameOverEvent()
         {
             SaveData();
-            _sceneLoader.LoadSummaryAdditive();
         }
 
         private void LoadData()
@@ -103,8 +109,18 @@ namespace CannonChallenge.Systems
         
         private void SaveData()
         {
+            _lastScoreReference.LevelReference = _levelReference;
+            _lastScoreReference.LastScore = _currentScore;
             _bestScore.UpdateRecords(_currentScore);
+            _lastScoreReference.BestScore = _bestScore;
             _scoreDao.Save(_bestScore);
+            StartCoroutine(LoadSummary());
+        }
+
+        private IEnumerator LoadSummary()
+        {
+            yield return _waitToLoadSummary;
+            _sceneLoader.LoadSummaryAdditive();
         }
     }
 }

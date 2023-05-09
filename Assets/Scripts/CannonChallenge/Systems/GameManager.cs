@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using CannonChallenge.Events;
-using CannonChallenge.Util;
+﻿using CannonChallenge.Events;
 using UnityEngine;
 
 namespace CannonChallenge.Systems
@@ -24,12 +22,9 @@ namespace CannonChallenge.Systems
         [SerializeField] private VoidEventAsset _onObjectiveFail;
         [Tooltip("Notify message to player")]
         [SerializeField] private StringEventAsset _onNotificationNotify;
-        [Tooltip("Scene Load helper")]
-        [SerializeField] private SceneLoader _sceneLoader;
         [Tooltip("Level complete timeline reference")]
         [SerializeField] private GameObject _levelCompleteTimeline;
 
-        private readonly WaitForSeconds _waitToLoadSummary = new(3);
         private bool _gameOn;
         private float _elapsedTime;
 
@@ -54,7 +49,6 @@ namespace CannonChallenge.Systems
         {
             _levelCompleteTimeline.SetActive(false);
             _onGameOverNotify.Invoke();
-            StartCoroutine(LoadSummary());
         }
 
         private void OnObjectiveFailEvent()
@@ -71,10 +65,5 @@ namespace CannonChallenge.Systems
             _onGameStartNotify.Invoke();
         }
 
-        private IEnumerator LoadSummary()
-        {
-            yield return _waitToLoadSummary;
-            _sceneLoader.LoadSummaryAdditive();
-        }
     }
 }

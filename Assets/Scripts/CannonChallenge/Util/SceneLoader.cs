@@ -9,6 +9,7 @@ namespace CannonChallenge.Util
     /// </summary>
     public class SceneLoader : MonoBehaviour
     {
+
         private const string _summarySceneName = "Summary"; 
         public void LoadMenu()
         {
@@ -18,6 +19,16 @@ namespace CannonChallenge.Util
         public void LoadGame()
         {
             SceneManager.LoadScene(sceneBuildIndex: 1);
+        }
+
+        public void LoadMoonGame()
+        {
+            SceneManager.LoadScene(sceneBuildIndex: 3);
+        }
+
+        public void LoadSceneByIndex(int index)
+        {
+            SceneManager.LoadScene(sceneBuildIndex: index);
         }
 
         public void LoadSummaryAdditive()

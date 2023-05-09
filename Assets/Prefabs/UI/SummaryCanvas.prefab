@@ -114,10 +114,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e296c8f08764b309cbf5090a7172452, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _lastScoreReference: {fileID: 11400000, guid: eed6e341ed0e8af42b9f90687b850de2,
+    type: 2}
+  _sceneLoader: {fileID: 0}
   _scoreTxt: {fileID: 1718484140468259399}
   _hitsTxt: {fileID: 88657861950189914}
   _shotsTxt: {fileID: 88657863645440419}
-  _scoreDao: {fileID: 0}
+  _normalColor: {r: 1, g: 0.78230834, b: 0, a: 1}
+  _recordColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &975412976231254455
 GameObject:
   m_ObjectHideFlags: 0
