@@ -26,6 +26,8 @@ namespace CannonChallenge.Systems
         [SerializeField] private StringEventAsset _onNotificationNotify;
         [Tooltip("Scene Load helper")]
         [SerializeField] private SceneLoader _sceneLoader;
+        [Tooltip("Level complete timeline reference")]
+        [SerializeField] private GameObject _levelCompleteTimeline;
 
         private readonly WaitForSeconds _waitToLoadSummary = new(3);
         private bool _gameOn;
@@ -45,7 +47,12 @@ namespace CannonChallenge.Systems
 
         private void OnObjectiveSuccessEvent()
         {
-            _onNotificationNotify.Invoke("Level Completed!");
+            _levelCompleteTimeline.SetActive(true);
+        }
+
+        public void OnTimelineOverSignal()
+        {
+            _levelCompleteTimeline.SetActive(false);
             _onGameOverNotify.Invoke();
             StartCoroutine(LoadSummary());
         }
