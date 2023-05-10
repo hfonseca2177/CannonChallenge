@@ -26,6 +26,11 @@ namespace CannonChallenge.Util
             SceneManager.LoadScene(sceneBuildIndex: 3);
         }
 
+        public void LoadDotsShowCase()
+        {
+            SceneManager.LoadScene(sceneBuildIndex: 4);
+        }
+
         public void LoadSceneByIndex(int index)
         {
             SceneManager.LoadScene(sceneBuildIndex: index);
