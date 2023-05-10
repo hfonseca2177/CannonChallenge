@@ -77,8 +77,10 @@ The main Objective besides having a polished game as much as possible, it is to 
 	- Imported environmental assets with terrains from asset store. I did some adjustments in the settings and data assets to match the URP needs
 - Input System
 	- I implemented a layer to allow the legacy and new Input system
+- Multithreading
+	- I implemented a simple scene with DOTS/ECS whith physics. (see more below)	
 
-### Unity Engine
+### Programming Aspects
 
 - Code Scalability
 	- Implemented cannon attributes in a way that allows a upgrade system and a Infinite mode
@@ -98,3 +100,7 @@ The main Objective besides having a polished game as much as possible, it is to 
 	- Interface usage to abstract implementation (eg. FileSerialization, Input Handler)
 - Design Patterns
 	- Solving common problems with common solutions whenever possible. Some implementations like serialization, input system, pooling, object factory, observer/consumer approach
+
+### Extra
+
+I wanted to show you a little bit about **DOTS ECS**, which, according to Unity's CEO, is the future of the engine. I implemented a simple scene that generates a huge amount of objects per second. I already had previous experience with ECS in my previous project. I believe that really multithreading is something that was missing from the engine.
