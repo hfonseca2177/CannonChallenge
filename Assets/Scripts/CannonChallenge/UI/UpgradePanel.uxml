@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement>
+        <ui:Label text="Upgrade" display-tooltip-when-elided="true" style="height: 25px; color: rgb(255, 255, 255);" />
+        <ui:VisualElement style="flex-direction: row; background-color: rgba(0, 0, 0, 0.27);">
+            <ui:Button text="Damage" display-tooltip-when-elided="true" name="Damage" style="background-color: rgb(212, 187, 0); color: rgb(0, 0, 0);" />
+            <ui:Button text="Speed" display-tooltip-when-elided="true" name="Speed" style="background-color: rgb(0, 111, 27);" />
+        </ui:VisualElement>
+        <ui:VisualElement name="cursor" style="overflow: visible; width: 5px; height: 5px; background-color: rgba(255, 255, 255, 255);" />
+    </ui:VisualElement>
+</ui:UXML>
